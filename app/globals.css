@@ -1,286 +1,316 @@
 @import "tailwindcss";
 
-:root {
-  /* === BACKGROUNDS === */
-  --bg-void:       #090F18;   /* Deepest dark. Road shadow, void behind the bus. */
-  --bg-base:       #0C1521;   /* Primary page background. Deep highway night. */
-  --bg-surface:    #111E2C;   /* Elevated surfaces. Bus dark panel tone. */
-  --bg-card:       #172435;   /* Cards, form inputs. Slightly lifted. */
-  --bg-overlay:    rgba(11, 21, 33, 0.82); /* Canvas text/panel overlay. */
-
-  /* === ACCENTS — from the sunset sky === */
-  --gold:          #D4841A;   /* Primary. The dominant sunset amber-gold. */
-  --gold-bright:   #F0A030;   /* Hover states, highlights, active. */
-  --gold-dim:      #A06010;   /* Muted gold — borders, inactive states. */
-  --gold-glow:     rgba(212, 132, 26, 0.18); /* Ambient glow behind cards. */
-
-  /* === ACCENTS — from the bus body === */
-  --steel:         #3D5E78;   /* Bus body slate-blue. Secondary accent. */
-  --steel-light:   #5A7A95;   /* Lighter steel — hover, focus. */
-  --steel-silver:  #8AAFC8;   /* Bus trim silver. Muted text accent. */
-
-  /* === TEXT === */
-  --text-primary:  #EDE8DF;   /* Warm off-white. Sky highlight near the sun. */
-  --text-secondary:#8AAFC8;   /* Steel silver. Supporting text. */
-  --text-muted:    #4A6478;   /* Very muted. Labels, metadata. */
-  --text-gold:     #D4841A;   /* Gold text — labels, CTAs. */
-
-  /* === BORDERS === */
-  --border-gold:   rgba(212, 132, 26, 0.22);
-  --border-gold-h: rgba(212, 132, 26, 0.55); /* Hover state border. */
-  --border-steel:  rgba(90, 122, 149, 0.22);
-  --border-subtle: rgba(255, 255, 255, 0.06);
-
-  /* === SHADOWS === */
-  --shadow-gold:   0 0 60px rgba(212, 132, 26, 0.14);
-  --shadow-steel:  0 0 40px rgba(58, 90, 120, 0.20);
-  --shadow-card:   0 4px 32px rgba(9, 15, 24, 0.60);
+@theme {
+  --font-display: var(--font-display), Georgia, serif;
+  --font-body: var(--font-body), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+  --color-accent: var(--accent);
+  --color-accent-bright: var(--accent-bright);
+  --color-accent-dim: var(--accent-dim);
+  --color-accent-glow: var(--accent-glow);
+  --color-silver: var(--silver);
+  --color-silver-light: var(--silver-bright);
+  --color-silver-dim: var(--silver-dim);
+  --color-gold: var(--accent);
+  --color-gold-bright: var(--accent-bright);
+  --color-gold-dim: var(--accent-dim);
+  --color-gold-glow: var(--accent-glow);
+  --color-blue: var(--accent);
+  --color-blue-dim: var(--accent-dim);
+  --color-blue-ghost: var(--accent-glow);
+  --color-cream: var(--text-primary);
 }
 
-/* ---- Base Reset ---- */
+:root {
+  --font-display: var(--font-cormorant-garamond);
+  --font-body: var(--font-jost);
+  --font-mono: var(--font-ibm-plex-mono);
+
+  --bg-void: #08090C;
+  --bg-base: #0A0D12;
+  --bg-surface: #0E1218;
+  --bg-card: #141A22;
+  --bg-elevated: #1A2230;
+  --bg-overlay: rgba(8, 9, 12, 0.82);
+
+  --accent: #2A82B8;
+  --accent-bright: #3A9ED8;
+  --accent-dim: #1A5A84;
+  --accent-deep: #0E3858;
+  --accent-glow: rgba(42, 130, 184, 0.15);
+
+  --silver: #6AAED4;
+  --silver-bright: #A8CDE4;
+  --silver-dim: #3A6880;
+  --silver-ice: #D8EEF8;
+
+  --glass-light: rgba(8, 9, 14, 0.35);
+  --glass-base: rgba(8, 10, 16, 0.55);
+  --glass-heavy: rgba(12, 15, 22, 0.72);
+
+  --text-primary: #E8F0F8;
+  --text-secondary: #6AAED4;
+  --text-muted: #2E4A5E;
+  --text-accent: #2A82B8;
+
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-blue: rgba(42, 130, 184, 0.28);
+  --border-blue-h: rgba(42, 130, 184, 0.65);
+  --border-silver: rgba(106, 174, 212, 0.18);
+
+  --shadow-blue: 0 0 60px rgba(42, 130, 184, 0.16);
+  --shadow-card: 0 4px 32px rgba(4, 6, 10, 0.70);
+
+  --gold: var(--accent);
+  --gold-bright: var(--accent-bright);
+  --gold-dim: var(--accent-dim);
+  --gold-glow: var(--accent-glow);
+  --shadow-gold: var(--shadow-blue);
+  --border-gold: var(--border-blue);
+  --border-gold-h: var(--border-blue-h);
+  --border-steel: var(--border-silver);
+  --steel: var(--silver-dim);
+  --steel-light: var(--silver);
+  --steel-silver: var(--silver-bright);
+  --blue: var(--accent);
+  --blue-bright: var(--accent-bright);
+  --blue-dim: var(--accent-dim);
+  --blue-glow: var(--accent-glow);
+  --border-hover: var(--border-blue-h);
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0
+}
+
+div,
+section,
+footer,
+article,
+header,
+nav,
+select,
+input,
+button,
+textarea,
+span,
+a {
+  border-radius: 0px
+}
+
+.rounded-pill {
+  border-radius: 9999px !important
+}
+
+.rounded-input {
+  border-radius: 4px !important
+}
+
+.rounded-6 {
+  border-radius: 6px !important
+}
+
+.rounded-10 {
+  border-radius: 10px !important
+}
+
+.rounded-12 {
+  border-radius: 12px !important
+}
+
+.interactive-card {
+  transition: box-shadow 400ms ease, transform 400ms ease, border-color 400ms ease;
+  border-radius: 0px !important
+}
+
+.interactive-card:hover {
+  box-shadow: var(--shadow-blue) !important;
+  transform: translateX(1.75rem) translateY(-4px) !important
 }
 
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale
 }
 
 body {
   background-color: var(--bg-base);
   color: var(--text-primary);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 300;
   overflow-x: hidden;
-  min-height: 100vh;
+  min-height: 100vh
 }
 
-/* ---- Typography Utilities ---- */
 .font-display {
-  font-family: var(--font-cormorant), serif;
+  font-family: var(--font-display), Georgia, serif
 }
+
 .font-body {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-body), sans-serif
+}
+
+.font-jost {
+  font-family: var(--font-jost), sans-serif
 }
 
 .font-mono {
-  font-family: var(--font-ibm-plex), monospace;
+  font-family: var(--font-mono), monospace
 }
 
-.text-gold {
-  color: var(--text-gold);
+.text-blue {
+  color: var(--accent)
 }
 
 .text-primary {
-  color: var(--text-primary);
+  color: var(--text-primary)
 }
 
 .text-secondary {
-  color: var(--text-secondary);
+  color: var(--text-secondary)
 }
 
 .text-muted {
-  color: var(--text-muted);
+  color: var(--text-muted)
 }
 
-/* ---- Scrollbar Styling ---- */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 6px
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-void);
+  background: var(--bg-void)
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--steel);
-  border-radius: 3px;
+  background: var(--text-muted);
+  border-radius: 0px !important
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
+  background: var(--accent)
 }
 
-/* ---- Selection ---- */
 ::selection {
-  background: rgba(212, 132, 26, 0.3);
-  color: var(--text-primary);
+  background: rgba(42, 130, 184, 0.30);
+  color: var(--text-primary)
 }
 
-/* ---- Canvas Layer — Desktop ---- */
-.assembly-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 55vw;
-  height: 100vh;
-}
-
-.canvas-edge-gradient {
-  position: fixed;
-  top: 0;
-  left: calc(55vw - 80px);
-  width: 80px;
-  height: 100vh;
-  background: linear-gradient(to right, transparent, var(--bg-surface));
-  z-index: 3;
-  pointer-events: none;
-}
-
-.content-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 45vw;
-  height: 100vh;
-  background: var(--bg-surface);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 5vw;
-  border-left: 1px solid var(--border-subtle);
-  z-index: 2;
-}
-
-/* ---- Scroll Progress Bar ---- */
-.scroll-progress-track {
-  position: fixed;
-  z-index: 45;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.scroll-progress-track.visible {
-  opacity: 1;
-}
-
-/* Desktop: Vertical bar on the left edge of content panel */
-.scroll-progress-track--desktop {
-  top: 50%;
-  left: calc(55vw - 4px);
-  transform: translateY(-50%);
-  width: 3px;
-  height: 40vh;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 2px;
-}
-
-.scroll-progress-fill--desktop {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0%;
-  background: var(--gold);
-  border-radius: 2px;
-  transition: height 0.1s linear;
-  box-shadow: 0 0 8px rgba(212, 132, 26, 0.4);
-}
-
-/* Mobile: Horizontal bar below navbar */
-.scroll-progress-track--mobile {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.scroll-progress-fill--mobile {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  background: var(--gold);
-  transition: width 0.1s linear;
-  box-shadow: 0 2px 8px rgba(212, 132, 26, 0.4);
-}
-
-/* ---- Keyframe Animations ---- */
 @keyframes pulse-opacity {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.3
+  }
+
+  50% {
+    opacity: 1
+  }
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%)
+  }
+
+  100% {
+    transform: translateX(-50%)
+  }
 }
 
 .animate-pulse-opacity {
-  animation: pulse-opacity 2s ease-in-out infinite;
+  animation: pulse-opacity 1.5s ease-in-out infinite
 }
 
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out forwards;
+.animate-spin-loader {
+  animation: spin 800ms linear infinite
 }
 
-.animate-spin-slow {
-  animation: spin 1.2s linear infinite;
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite
 }
 
-/* ---- Mobile specific styling for canvas & panel ---- */
-@media (max-width: 1023px) {
-  .assembly-canvas {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 60vh;
-    z-index: 1;
-  }
-  
-  .canvas-edge-gradient {
-    display: none;
-  }
-  
-  .content-panel {
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 40vh;
-    padding: 24px 20px;
-    border-left: none;
-    border-top: 1px solid var(--border-subtle);
-    z-index: 2;
-  }
+.nav-link-hover {
+  position: relative
+}
 
-  /* Portrait screen: canvas fits width, shows full image */
-  @media (orientation: portrait) {
-    .assembly-canvas {
-      height: auto;
-      aspect-ratio: 16 / 9;
-      max-height: 50vh;
-    }
-  }
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--accent);
+  transition: width 300ms ease;
+  transform-origin: left;
+  border-radius: 0px !important
+}
 
-  /* Mobile scroll progress bar */
-  .scroll-progress-track--desktop {
-    display: none;
-  }
+.nav-link-hover:hover::after {
+  width: 100%
+}
 
-  .scroll-progress-track--mobile {
-    display: block;
+.reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.25, 1, 0.5, 1), transform 0.75s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity
+}
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important
   }
 }
 
-/* Desktop: hide mobile progress, show desktop */
-@media (min-width: 1024px) {
-  .scroll-progress-track--mobile {
-    display: none;
-  }
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw
+}
 
-  .scroll-progress-track--desktop {
-    display: block;
-  }
+.pin-spacer {
+  max-width: 100vw !important;
+  overflow-x: hidden !important
+}
+
+#assembly-scroll-container {
+  max-width: 100vw;
+  overflow-x: hidden
+}
+
+main {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw
+}
+
+#assembly-sticky {
+  max-width: 100vw !important
 }

@@ -1,90 +1,128 @@
 'use client';
 
+import { useScrollReveal } from '@/lib/useIntersectionAnimation';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import CommissionForm from '@/components/form/CommissionForm';
-import { useScrollReveal } from '@/lib/useIntersectionAnimation';
 
 export default function CommissionSection() {
-  useScrollReveal('.reveal-commission', { yOffset: 30 });
+  useScrollReveal('.reveal-commission');
+
+  const expectations = [
+    'Custom-Built to Specification',
+    'AIS 052 Fully Compliant',
+    'Volvo-Certified Chassis',
+    'Pan-India Delivery'
+  ];
 
   return (
-    <section id="commission" className="bg-[var(--bg-base)] w-full py-24 relative overflow-hidden z-10">
-      
-      {/* Ambient Light Orbs */}
-      <div className="absolute top-0 right-[-10%] w-[500px] h-[500px] bg-[var(--gold)] rounded-full blur-[200px] opacity-[0.10] pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-[var(--steel)] rounded-full blur-[180px] opacity-[0.08] pointer-events-none" />
+    <section id="contact" className="bg-[var(--bg-base)] w-full py-24 relative overflow-hidden z-10">
+
+      {/* Ambient Glow Effects */}
+      <div
+        className="absolute top-0 right-[-10%] w-[500px] h-[400px] pointer-events-none opacity-100 z-0 rounded-none"
+        style={{
+          background: 'radial-gradient(ellipse 500px 400px at 90% 10%, rgba(212, 132, 26, 0.10), transparent)',
+          borderRadius: '0px !important'
+        }}
+      />
+      <div
+        className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[350px] pointer-events-none opacity-100 z-0 rounded-none"
+        style={{
+          background: 'radial-gradient(ellipse 400px 350px at 10% 90%, rgba(61, 94, 120, 0.08), transparent)',
+          borderRadius: '0px !important'
+        }}
+      />
 
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-          
-          {/* Left Column - Copy */}
-          <div className="w-full lg:w-1/2 flex flex-col pt-4">
-            <div className="mb-12 reveal-commission opacity-0">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-[1px] bg-[var(--gold)]" />
-                <h3 className="font-mono text-[11px] text-[var(--gold)] tracking-[0.4em] uppercase">
-                  COMMISSION
-                </h3>
-              </div>
-              <h2 className="font-display font-bold text-[48px] md:text-[56px] text-[var(--text-primary)] leading-[1.1] mb-8">
-                Start<br />
-                Your Build.
+
+        {/* Section Label — full-width centered */}
+        <div className="mb-16 text-center reveal-commission">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-[35px] h-[1px] bg-[var(--gold)]" />
+            <h3 className="font-mono font-medium text-[18px] text-[var(--text-gold)] tracking-[0.4em] uppercase leading-[1]">
+              COMMISSION
+            </h3>
+            <br />
+
+            <div className="w-[35px] h-[1px] bg-[var(--gold)]" />
+            <br />
+          </div>
+          <br />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+          {/* Left Column */}
+          <div className="flex flex-col reveal-commission">
+
+            {/* Header */}
+            <div className="mb-10 flex flex-col">
+              <h2 className="font-display font-light text-[clamp(2.2rem,4vw,3.8rem)] text-[var(--text-primary)] leading-[1.1] mb-6">
+                Start Your <em className="font-display italic font-light text-[var(--gold)] not-italic">Build.</em>
               </h2>
-              <p className="font-body text-[15px] text-[var(--text-secondary)] leading-[1.7] max-w-[440px]">
-                25 years of engineering coaches for India&apos;s roads. Every vehicle is commissioned individually — no stock units, no compromises. Tell us what you need.
+              <p className="font-body font-normal text-[15px] text-[var(--text-secondary)] leading-[1.8] tracking-wider max-w-[440px]">
+                25 years of engineering coaches for India&apos;s roads. Every vehicle is commissioned individually &mdash; no stock units, no compromises. Tell us what you need.
               </p>
+              < br />
             </div>
 
-            <div className="flex flex-col gap-12 reveal-commission opacity-0 delay-100">
-              {/* What to expect */}
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="font-mono text-[12px] text-[var(--text-muted)] tracking-widest uppercase">What to expect</span>
-                  <div className="flex-1 h-[1px] bg-[var(--border-subtle)]" />
-                </div>
-                <ul className="flex flex-col gap-3">
-                  {[
-                    'Custom-Built to Specification',
-                    'AIS 052 Fully Compliant',
-                    'Volvo-Certified Chassis',
-                    'Pan-India Delivery'
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 font-body text-[14px] text-[var(--text-secondary)]">
-                      <span className="text-[var(--gold)]">&gt;</span> {item}
-                    </li>
-                  ))}
-                </ul>
+            {/* WHAT TO EXPECT */}
+            <div className="mb-12">
+              <div className="flex items-center gap-4 mb-5">
+                <h4 className="font-mono font-medium text-[11px] tracking-[0.3em] uppercase text-[var(--gold)] shrink-0 leading-[1]">
+                  WHAT TO EXPECT
+                </h4>
+                <div className="w-full h-[1px] bg-[var(--border-subtle)]" />
+                <br />
               </div>
+              <ul className="flex flex-col gap-3">
+                {expectations.map((item, idx) => (
+                  <li key={idx} className="font-body font-normal text-[14px] text-[var(--text-secondary)] flex items-center gap-2 tracking-wider">
+                    <span className="text-[var(--gold)] font-medium">&gt;</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <br />
+            </div>
 
-              {/* Contact */}
-              <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="font-mono text-[12px] text-[var(--text-muted)] tracking-widest uppercase">Reach us directly</span>
-                  <div className="flex-1 h-[1px] bg-[var(--border-subtle)]" />
-                </div>
-                <div className="flex flex-col gap-4">
-                  <a href="tel:+919825039111" className="flex items-center gap-4 font-body text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors group w-fit">
-                    <Phone size={18} className="text-[var(--steel-silver)] group-hover:text-[var(--gold)] transition-colors" />
-                    +91 98250 39111
-                  </a>
-                  <a href="mailto:surendra_bareja@yahoo.com" className="flex items-center gap-4 font-body text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors group w-fit">
-                    <Mail size={18} className="text-[var(--steel-silver)] group-hover:text-[var(--gold)] transition-colors" />
-                    surendra_bareja@yahoo.com
-                  </a>
-                  <div className="flex items-start gap-4 font-body text-[14px] text-[var(--text-secondary)]">
-                    <MapPin size={18} className="text-[var(--steel-silver)] shrink-0 mt-1" />
-                    <span className="leading-relaxed">
-                      NH-8, Near APMC Market,<br />
-                      Bareja – 382425, Ahmedabad
-                    </span>
-                  </div>
+            {/* REACH US */}
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <h4 className="font-mono font-medium text-[11px] tracking-[0.3em] uppercase text-[var(--gold)] shrink-0 leading-[1]">
+                  REACH US DIRECTLY
+                </h4>
+                <br />
+                <div className="w-full h-[1px] bg-[var(--border-subtle)]" />
+              </div>
+              <div className="flex flex-col gap-4">
+                <a
+                  href="tel:+919825039111"
+                  className="flex items-center gap-2.5 font-body font-normal text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors w-fit group tracking-wider"
+                >
+                  <Phone size={16} className="text-[var(--steel-silver)] group-hover:text-[var(--gold)] transition-colors" />
+                  +91 98250 39111
+                </a>
+                <a
+                  href="mailto:surendra_bareja@yahoo.com"
+                  className="flex items-center gap-2.5 font-body font-normal text-[14px] text-[var(--text-secondary)] hover:text-[var(--gold)] transition-colors w-fit group tracking-wider"
+                >
+                  <Mail size={16} className="text-[var(--steel-silver)] group-hover:text-[var(--gold)] transition-colors" />
+                  surendra_bareja@yahoo.com
+                </a>
+                <div className="flex items-start gap-2.5 font-body font-normal text-[14px] text-[var(--text-secondary)] tracking-wider leading-[1.8]">
+                  <MapPin size={16} className="text-[var(--steel-silver)] mt-1 shrink-0" />
+                  <span>
+                    NH-8, Near APMC Market, Bareja &ndash; 382425, Ahmedabad
+                  </span>
                 </div>
               </div>
             </div>
+
           </div>
 
-          {/* Right Column - Form */}
-          <div className="w-full lg:w-1/2 reveal-commission opacity-0 delay-200">
+          {/* Right Column (Form) */}
+          <div className="reveal-commission translate-x-5">
             <CommissionForm />
           </div>
 

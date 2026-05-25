@@ -3,6 +3,7 @@ import Navbar from '@/components/layout/Navbar';
 import LoadingScreen from '@/components/loading/LoadingScreen';
 import HeroSection from '@/components/hero/HeroSection';
 import AssemblySection from '@/components/assembly/AssemblySection';
+import MarqueeStrip from '@/components/sections/MarqueeStrip';
 import AboutSection from '@/components/sections/AboutSection';
 import ByTheNumbers from '@/components/sections/ByTheNumbers';
 import OurRange from '@/components/sections/OurRange';
@@ -17,7 +18,7 @@ export default function Home() {
     <SmoothScroll>
       <LoadingScreen />
       <Navbar />
-      
+
       <main className="relative w-full flex flex-col">
         {/* Absolute overlay over the AssemblySection canvas. Fades out on scroll. */}
         <div className="absolute top-0 left-0 w-full z-20 pointer-events-none">
@@ -26,15 +27,28 @@ export default function Home() {
 
         {/* Cinematic Scroll-tied narrative */}
         <AssemblySection />
-        
+
         {/* Flowing static sections below */}
-        <div className="relative z-30 bg-[var(--bg-base)]">
+        <div className="relative z-30 bg-[var(--bg-base)] w-full overflow-x-hidden">
+          <MarqueeStrip />
           <AboutSection />
+          <br />
+          <br />
           <ByTheNumbers />
+          <br />
+          <br />
           <OurRange />
+          <br />
+          <br />
           <PopularServices />
+          <br />
+          <br />
           <TheMaking />
+          <br />
+          <br />
           <Certifications />
+          <br />
+          <br />
           <CommissionSection />
           <Footer />
         </div>
@@ -42,3 +56,4 @@ export default function Home() {
     </SmoothScroll>
   );
 }
+

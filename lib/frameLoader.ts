@@ -1,4 +1,4 @@
-export const TOTAL_FRAMES = 300;
+export const TOTAL_FRAMES = 384;
 const PRIORITY_INTERVAL = 6;
 
 export interface FrameLoader {
@@ -14,8 +14,8 @@ export function createFrameLoader(): FrameLoader {
     return {
       getNearestFrame: () => null,
       getLoadProgress: () => 0,
-      onPriorityComplete: () => {},
-      onEachPriorityFrame: () => {}
+      onPriorityComplete: () => { },
+      onEachPriorityFrame: () => { }
     };
   }
 
@@ -24,7 +24,7 @@ export function createFrameLoader(): FrameLoader {
   const queue: number[] = [];
   let priorityTotal = 0;
   let priorityLoaded = 0;
-  
+
   const priorityCompleteCallbacks: (() => void)[] = [];
   const eachPriorityFrameCallbacks: ((loaded: number, total: number) => void)[] = [];
 
@@ -33,7 +33,7 @@ export function createFrameLoader(): FrameLoader {
     queue.push(i);
     priorityTotal++;
   }
-  
+
   // Then fill in remaining frames
   for (let i = 1; i <= TOTAL_FRAMES; i++) {
     if ((i - 1) % PRIORITY_INTERVAL !== 0) queue.push(i);
@@ -49,11 +49,11 @@ export function createFrameLoader(): FrameLoader {
     if (queue.length === 0) return;
     const frameNum = queue.shift()!;
     const img = new Image();
-    
+
     img.onload = () => {
       loaded.add(frameNum);
       images[frameNum - 1] = img;
-      
+
       if (isPriority(frameNum)) {
         priorityLoaded++;
         eachPriorityFrameCallbacks.forEach(cb => cb(priorityLoaded, priorityTotal));
@@ -61,14 +61,14 @@ export function createFrameLoader(): FrameLoader {
           priorityCompleteCallbacks.forEach(cb => cb());
         }
       }
-      
+
       if ('requestIdleCallback' in window) {
         (window as unknown as { requestIdleCallback: (cb: () => void, opts: { timeout: number }) => void }).requestIdleCallback(() => loadNext(), { timeout: 500 });
       } else {
         setTimeout(loadNext, 10);
       }
     };
-    
+
     img.onerror = () => {
       // Skip failed frames silently — getNearestFrame handles the gap
       if ('requestIdleCallback' in window) {
@@ -77,7 +77,7 @@ export function createFrameLoader(): FrameLoader {
         setTimeout(loadNext, 10);
       }
     };
-    
+
     img.src = `/assets/frame_${padFrame(frameNum)}.webp`;
   }
 

@@ -24,10 +24,10 @@ export default function StatCounter({ value, duration = 1600, suffix = '', prefi
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
-      
+
       // easeOutExpo
       const easeProgress = progress === duration ? 1 : 1 - Math.pow(2, -10 * progress / duration);
-      
+
       const currentCount = Math.min(Math.round(easeProgress * value), value);
       setCount(currentCount);
 

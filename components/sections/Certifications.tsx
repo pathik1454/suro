@@ -3,81 +3,90 @@
 import { useScrollReveal } from '@/lib/useIntersectionAnimation';
 
 export default function Certifications() {
-  useScrollReveal('.reveal-cert', { yOffset: 30 });
+  useScrollReveal('.reveal-cert');
 
   const certs = [
     {
       code: 'AIS 052',
-      title: 'Coach Body Standard',
-      auth: 'Ministry of Road Transport & Highways, Govt. of India',
-      desc: 'Coach Body Code Compliance'
+      name: 'Coach Body Standard',
+      auth: 'Ministry of Road Transport & Highways',
+      scope: 'Coach Body Code Compliance'
     },
     {
       code: 'BS VI',
-      title: 'Emission Standard',
+      name: 'Emission Standard',
       auth: 'Bharat Stage Emission Standards',
-      desc: 'Euro VI Equivalent Compliance'
+      scope: 'Euro VI Equivalent'
     },
     {
       code: 'ISO 9001',
-      title: 'Quality Management',
+      name: 'Quality Management',
       auth: 'International Organization for Standardization',
-      desc: 'Manufacturing Process Quality'
+      scope: 'Manufacturing Process Quality'
     },
     {
       code: 'BIS',
-      title: 'Material Standard',
+      name: 'Material Standard',
       auth: 'Bureau of Indian Standards',
-      desc: 'Structural Steel Certification'
+      scope: 'Structural Steel Certification'
     }
   ];
 
   return (
-    <section className="bg-[var(--bg-surface)] w-full py-24 relative z-10">
+    <section id="certifications" className="bg-[var(--bg-surface)] w-full py-24 relative z-10">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-        
+
         {/* Header */}
-        <div className="mb-16 reveal-cert opacity-0">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-[1px] bg-[var(--gold)]" />
-            <h3 className="font-mono text-[11px] text-[var(--gold)] tracking-[0.4em] uppercase">
+        <div className="mb-16 reveal-cert text-center">
+          <br />
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="w-[35px] h-[1px] bg-[var(--gold)]" />
+            <h3 className="font-mono font-medium text-[18px] text-[var(--text-gold)] tracking-[0.4em] uppercase leading-[1]">
               COMPLIANCE
             </h3>
-            <div className="w-full max-w-[200px] h-[1px] bg-[var(--border-subtle)]" />
+            <div className="w-[35px] h-[1px] bg-[var(--gold)]" />
           </div>
-          <h2 className="font-display font-bold text-[40px] md:text-[56px] text-[var(--text-primary)] leading-[1.1]">
-            Certified to<br />
-            Every Standard.
+          <br />
+          <h2 className="font-display font-light text-[48px] text-[var(--text-secondary)] max-w-[600px] mx-auto leading-[1.1] text-center">
+            Certified to Every <em className="font-display italic font-light text-[var(--gold)] not-italic">Standard.</em>
           </h2>
+          <br />
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {certs.map((cert, i) => (
-            <div 
-              key={i} 
-              className="reveal-cert opacity-0 bg-[var(--bg-card)] border-l-[3px] border-l-[var(--gold)] border-y border-r border-y-[var(--border-subtle)] border-r-[var(--border-subtle)] p-7 md:p-8 flex flex-col justify-center"
-              style={{ transitionDelay: `${i * 100}ms` }}
+        {/* 2x2 Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 reveal-cert">
+          {certs.map((cert, idx) => (
+            <div
+              key={idx}
+              className="interactive-card bg-[var(--bg-card)] border-l-[3px] border-l-[var(--gold)] border-y border-r border-[var(--border-subtle)] p-[28px_32px] flex flex-col justify-center rounded-none translate-x-7"
+              style={{ borderRadius: '0px !important' }}
             >
-              <div className="font-mono font-medium text-[32px] md:text-[36px] text-[var(--gold)] mb-3">
+              {/* Code (IBM Plex Mono 500, 36px, --gold) */}
+              <div className="font-mono font-medium text-[36px] text-[var(--gold)] leading-none">
                 {cert.code}
               </div>
-              <h4 className="font-body font-semibold text-[16px] text-[var(--text-primary)] mb-4">
-                {cert.title}
+
+              {/* Name (Inter 600, 16px, --text-primary) */}
+              <h4 className="font-body font-semibold text-[16px] text-[var(--text-primary)] mt-3 leading-[1.1]">
+                {cert.name}
               </h4>
-              <p className="font-body text-[13px] text-[var(--text-secondary)] leading-relaxed mb-2">
+
+              {/* Issuing Body (Inter 400, 13px, --text-secondary) */}
+              <p className="font-body font-normal text-[13px] text-[var(--text-secondary)] mt-1.5 leading-[1.3] tracking-wider">
                 {cert.auth}
               </p>
-              <p className="font-body text-[12px] text-[var(--text-muted)]">
-                {cert.desc}
+
+              {/* Description (Inter 400, 12px, --text-muted) */}
+              <p className="font-body font-normal text-[12px] text-[var(--text-muted)] mt-1 tracking-wider">
+                {cert.scope}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Bottom Note */}
-        <div className="reveal-cert opacity-0 text-center font-body text-[13px] text-[var(--text-muted)] mt-12">
-          All vehicles arrive with complete RTO documentation and a pre-delivery inspection certificate.
+        {/* Note Below (Inter 400, 13px, --text-muted, centered) */}
+        <div className="reveal-cert text-center font-body font-normal text-[13px] text-[var(--text-muted)] italic mt-12 tracking-wider">
+          &ldquo;All vehicles arrive with complete RTO documentation and a pre-delivery inspection certificate.&rdquo;
         </div>
 
       </div>
